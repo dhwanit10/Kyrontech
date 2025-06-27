@@ -483,6 +483,71 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+            /* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 100px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px; right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal input, .modal button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.modal button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: #0056b3;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  animation: slideUp 0.5s ease-out;
+}
+
     </style>
 </head>
 <body>
@@ -549,8 +614,9 @@
             <div class="container">
                 <h2>Ready to Transform Your Business?</h2>
                 <p class="subtitle">Get your first AI automation consultation for free</p>
-                <a href="#" class="consultation-cta">Book Free Consultation</a>
-                
+<!--                 <a href="#" class="consultation-cta">Book Free Consultation</a> -->
+                     <a href="javascript:void(0);" id="bookButton" class="consultation-cta">Book Free Consultation</a>
+
                 <div class="social-links">
                     <a href="#" class="social-link" title="Instagram">📷</a>
                     <a href="#" class="social-link" title="LinkedIn">💼</a>
@@ -562,6 +628,30 @@
     <footer>
         <p>&copy; 2025 Kyron Tech. All rights reserved.</p>
     </footer>
+    
+       <!-- Modal Popup HTML -->
+<div id="consultationModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Book Your Free Consultation</h2>
+    <form id="consultationForm">
+      <label for="name">Name*</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email*</label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="phone">Phone Number*</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="business">Business (optional)</label>
+      <input type="text" id="business" name="business" />
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
 
     <script>
         // Create floating bubbles/dots
@@ -671,6 +761,31 @@
                 }, 10);
             });
         }, 5000);
+
+        
+         // Open Modal
+  document.getElementById('bookButton').addEventListener('click', function() {
+    document.getElementById('consultationModal').style.display = 'block';
+  });
+
+  // Close Modal
+  document.querySelector('.close').addEventListener('click', function() {
+    document.getElementById('consultationModal').style.display = 'none';
+  });
+
+  // Close if clicking outside the modal
+  window.onclick = function(event) {
+    if (event.target == document.getElementById('consultationModal')) {
+      document.getElementById('consultationModal').style.display = 'none';
+    }
+  };
+
+  // Handle form submit (example only, modify for actual backend/email service)
+  document.getElementById('consultationForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Thank you! We’ll contact you soon.');
+    document.getElementById('consultationModal').style.display = 'none';
+  });
     </script>
 </body>
 </html>
