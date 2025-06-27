@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   try {
-    const response = await fetch('https://dhwap1010.app.n8n.cloud/webhook-test/Consultation', {
+    const response = await fetch('https://dhwap1010.app.n8n.cloud/webhook/Consultation', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(req.body),
