@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kyrontech.vercel.app/sitemap.xml
